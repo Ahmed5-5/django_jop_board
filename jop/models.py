@@ -1,7 +1,10 @@
 from django.db import models
 
 # Create your models here.
-
+def image_upload(instacne,filename):
+    image_name, extention = filename.split(".")
+    return "jops/ %s.%s"%(instacne.title,extention)
+    
 class jop(models.Model):
     '''
     Django_models_feilds:
@@ -21,6 +24,7 @@ class jop(models.Model):
     vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=0)
     experience = models.IntegerField(default=1)
+    image = models.ImageField(upload_to=image_upload)
     category = models.ForeignKey('Category' , on_delete=models.CASCADE)
 
     def __str__(self):
